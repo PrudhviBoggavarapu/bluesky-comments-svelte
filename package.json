@@ -1,12 +1,13 @@
 {
-	"name": "bluesky-svelte",
-	"version": "0.0.1",
+	"name": "bluesky-comments-svelte",
+	"version": "0.1.0",
+	"description": "A Svelte component library to display Bluesky post threads with replies in a comment-style format.",
 	"scripts": {
 		"dev": "vite dev",
-		"build": "vite build && npm run prepack",
+		"build": "vite build",
 		"preview": "vite preview",
-		"prepare": "svelte-kit sync || echo ''",
-		"prepack": "svelte-kit sync && svelte-package && publint",
+		"package": "svelte-kit sync && svelte-package && publint",
+		"prepublishOnly": "npm run package",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
 		"format": "prettier --write .",
@@ -27,9 +28,49 @@
 		".": {
 			"types": "./dist/index.d.ts",
 			"svelte": "./dist/index.js"
+		},
+		"./ThreadView": {
+			"types": "./dist/components/ThreadView.svelte.d.ts",
+			"svelte": "./dist/components/ThreadView.svelte"
+		},
+		"./PostCard": {
+			"types": "./dist/components/PostCard.svelte.d.ts",
+			"svelte": "./dist/components/PostCard.svelte"
+		},
+		"./ReplyList": {
+			"types": "./dist/components/ReplyList.svelte.d.ts",
+			"svelte": "./dist/components/ReplyList.svelte"
+		},
+		"./ReplyItem": {
+			"types": "./dist/components/ReplyItem.svelte.d.ts",
+			"svelte": "./dist/components/ReplyItem.svelte"
+		},
+		"./LoadingIndicator": {
+			"types": "./dist/components/primitive/LoadingIndicator.svelte.d.ts",
+			"svelte": "./dist/components/primitive/LoadingIndicator.svelte"
+		},
+		"./ErrorDisplay": {
+			"types": "./dist/components/primitive/ErrorDisplay.svelte.d.ts",
+			"svelte": "./dist/components/primitive/ErrorDisplay.svelte"
+		},
+		"./NotFoundPlaceholder": {
+			"types": "./dist/components/primitive/NotFoundPlaceholder.svelte.d.ts",
+			"svelte": "./dist/components/primitive/NotFoundPlaceholder.svelte"
+		},
+		"./BlockedPlaceholder": {
+			"types": "./dist/components/primitive/BlockedPlaceholder.svelte.d.ts",
+			"svelte": "./dist/components/primitive/BlockedPlaceholder.svelte"
+		},
+		"./api": {
+			"types": "./dist/api_stuff.d.ts",
+			"import": "./dist/api_stuff.js"
+		},
+		"./types": {
+			"types": "./dist/types.d.ts"
 		}
 	},
 	"peerDependencies": {
+		"@atproto/api": "^0.14.0",
 		"svelte": "^5.0.0"
 	},
 	"devDependencies": {
@@ -37,15 +78,17 @@
 		"@eslint/js": "^9.18.0",
 		"@sveltejs/adapter-static": "^3.0.8",
 		"@sveltejs/kit": "^2.16.0",
-		"@sveltejs/package": "^2.0.0",
+		"@sveltejs/package": "^2.3.0",
 		"@sveltejs/vite-plugin-svelte": "^5.0.0",
 		"@tailwindcss/forms": "^0.5.9",
 		"@tailwindcss/typography": "^0.5.15",
 		"@tailwindcss/vite": "^4.0.0",
+		"autoprefixer": "^10.4.19",
 		"eslint": "^9.18.0",
 		"eslint-config-prettier": "^10.0.1",
 		"eslint-plugin-svelte": "^3.0.0",
 		"globals": "^16.0.0",
+		"postcss": "^8.4.38",
 		"prettier": "^3.4.2",
 		"prettier-plugin-svelte": "^3.3.3",
 		"prettier-plugin-tailwindcss": "^0.6.11",
@@ -53,20 +96,31 @@
 		"svelte": "^5.0.0",
 		"svelte-check": "^4.0.0",
 		"tailwindcss": "^4.0.0",
+		"tslib": "^2.4.1",
 		"typescript": "^5.0.0",
 		"typescript-eslint": "^8.20.0",
 		"vite": "^6.2.5"
 	},
 	"keywords": [
-		"svelte"
+		"svelte",
+		"sveltekit",
+		"bluesky",
+		"atproto",
+		"component",
+		"thread",
+		"comments",
+		"social",
+		"at protocol"
 	],
-	"pnpm": {
-		"onlyBuiltDependencies": [
-			"esbuild"
-		]
+	"author": "Prudhvi Boggavarapu",
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/PrudhviBoggavarapu/bluesky-comments-svelte.git"
 	},
-	"packageManager": "pnpm@9.15.4+sha512.b2dc20e2fc72b3e18848459b37359a32064663e5627a51e4c74b2c29dd8e8e0491483c3abb40789cfd578bf362fb6ba8261b05f0387d76792ed6e23ea3b1b6a0",
-	"dependencies": {
-		"@atproto/api": "^0.14.22"
-	}
+	"homepage": "https://github.com/PrudhviBoggavarapu/bluesky-comments-svelte#readme",
+	"bugs": {
+		"url": "https://github.com/PrudhviBoggavarapu/bluesky-comments-svelte/issues"
+	},
+	"packageManager": "pnpm@9.15.4+sha512.b2dc20e2fc72b3e18848459b37359a32064663e5627a51e4c74b2c29dd8e8e0491483c3abb40789cfd578bf362fb6ba8261b05f0387d76792ed6e23ea3b1b6a0"
 }
